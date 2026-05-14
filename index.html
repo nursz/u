@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Для тебя</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
+        background-size: 400% 400%;
+        animation: gradient 10s ease infinite;
+        overflow: hidden;
+    }
+
+    @keyframes gradient {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    .card {
+        background: rgba(255,255,255,0.85);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        max-width: 350px;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%,100% {transform: translateY(0);}
+        50% {transform: translateY(-10px);}
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    #text {
+        font-size: 16px;
+        color: #555;
+        min-height: 60px;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 30px;
+        background: #ff4d6d;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+        background: #ff2e55;
+    }
+
+    .heart {
+        position: absolute;
+        color: #ff4d6d;
+        animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+        0% {transform: translateY(-10%); opacity: 1;}
+        100% {transform: translateY(110vh); opacity: 0;}
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Почему без настроения? 😏</h1>
+    <div id="text"></div>
+    <button onclick="reply()">Поднять настроение</button>
+</div>
+
+<script>
+    // Печатающийся текст
+    const message = "Давай я займусь этим... аккуратно, но уверенно 😉";
+    let i = 0;
+
+    function typeText() {
+        if (i < message.length) {
+            document.getElementById("text").innerHTML += message.charAt(i);
+            i++;
+            setTimeout(typeText, 50);
+        }
+    }
+    typeText();
+
+    // Кнопка
+    function reply() {
+        alert("Теперь настроение точно поднято 😈");
+    }
+
+    // Падающие сердечки
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 10 + "px";
+        heart.style.top = "-10px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
