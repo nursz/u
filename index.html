@@ -1,150 +1,242 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Для Qarakozim ❤️</title>
 
-<style>
-body {
-    margin: 0;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-}
+    <style>
+      :root {
+        --primary-color: #ff4d6d;
+        --bg-gradient: linear-gradient(135deg, #fff5f6 0%, #ffebf0 100%);
+      }
 
-/* экраны */
-.screen {
-    display: none;
-    height: 100vh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+      * {
+        box-sizing: border-box;
+      }
 
-.screen.active {
-    display: flex;
-}
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg-gradient);
+        color: #333;
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-/* карточка */
-.card {
-    background: rgba(255,255,255,0.85);
-    padding: 25px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+      .screen {
+        display: none;
+        width: 90%;
+        max-width: 450px;
+        text-align: center;
+        padding: 20px;
+        animation: fadeIn 0.8s ease-out;
+      }
 
-/* кнопка */
-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 30px;
-    background: #ff4d6d;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-}
+      .screen.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-/* popup */
-#popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    display: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-/* сердечки */
-.heart-bg {
-    position: absolute;
-    color: #ff4d6d;
-    font-size: 20px;
-    animation: fall linear infinite;
-}
+      h1 {
+        color: var(--primary-color);
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
 
-@keyframes fall {
-    0% {transform: translateY(-10vh); opacity: 1;}
-    100% {transform: translateY(110vh); opacity: 0;}
-}
-</style>
+      p {
+        font-size: 16px;
+        color: #666;
+        line-height: 1.5;
+      }
 
-</head>
+      button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 18px;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-top: 25px;
+        transition: 0.3s;
+        box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+      }
 
-<body>
+      button:hover {
+        transform: scale(1.05);
+        background: #ff3355;
+      }
 
-<!-- ЭКРАН 1 -->
-<div id="screen1" class="screen active">
-    <div class="card">
-        <h2>Почему без настроения? 😏</h2>
-        <button onclick="nextScreen()">Дальше</button>
+      .card {
+        background: white;
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid #ffe0e5;
+        text-align: left;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 18px;
+        color: #444;
+        display: flex;
+        align-items: center;
+      }
+
+      .card h3::before {
+        content: "❤️";
+        margin-right: 10px;
+        font-size: 14px;
+      }
+
+      .card span {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, margin-top 0.3s ease;
+        color: #777;
+        font-size: 14px;
+      }
+
+      .card.open {
+        border-color: var(--primary-color);
+      }
+
+      .card.open span {
+        max-height: 100px;
+        margin-top: 10px;
+      }
+
+      .heart-bg {
+        position: fixed;
+        top: -20px;
+        color: var(--primary-color);
+        font-size: 20px;
+        user-select: none;
+        pointer-events: none;
+        z-index: -1;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="screen1" class="screen active">
+      <div style="font-size: 50px">💌</div>
+
+      <h1>Привет, Qarakozim</h1>
+
+      <p>
+        Я сделал это специально для тебя потому что у тебя нет настроения ❤️
+        <br />
+        Пройди мини-инструкцию, чтобы открыть свои сюрпризы ✨
+      </p>
+
+      <button onclick="nextScreen(1)">Начать игру ✨</button>
     </div>
-</div>
 
-<!-- ЭКРАН 2 -->
-<div id="screen2" class="screen">
-    <div class="card">
-        <h2>Давай исправим это 😉</h2>
-        <button onclick="openPopup()">Открыть</button>
+    <div id="screen2" class="screen">
+      <h1>Почему я тебя люблю</h1>
+
+      <p>Нажми на каждое сердечко ❤️</p>
+
+      <div class="card" onclick="this.classList.toggle('open')">
+        <h3>Твоя преданность</h3>
+        <span>Ты никогда не сдаешься, даже когда трудно.</span>
+      </div>
+
+      <div class="card" onclick="this.classList.toggle('open')">
+        <h3>Твоя нежность</h3>
+        <span>Ты даришь мне любовь каждый день.</span>
+      </div>
+
+      <div class="card" onclick="this.classList.toggle('open')">
+        <h3>Твой юмор</h3>
+        <span>Ты всегда можешь рассмешить меня.</span>
+      </div>
+
+      <div class="card" onclick="this.classList.toggle('open')">
+        <h3>Твоя красота</h3>
+        <span>Ты прекрасна во всем, что делаешь.</span>
+      </div>
+
+      <button onclick="nextScreen(2)">Далее ➡️</button>
     </div>
-</div>
 
-<!-- ЭКРАН 3 -->
-<div id="screen3" class="screen">
-    <div class="card">
-        <h2>Ну как тебе? 😌</h2>
-        <button onclick="nextScreen()">Ещё</button>
+    <div id="screen3" class="screen">
+      <div style="font-size: 55px">❤️</div>
+
+      <h1>Пожалуйста не расстраивайся когда рядом я</h1>
+
+      <p>
+        Ты — самое лучшее, что случилось в моей жизни.
+        <br /><br />
+        Каждый день рядом с тобой — это настоящее счастье.
+        Спасибо тебе за каждую улыбку ❤️
+        <br /><br />
+        Хочу чтобы ты всегда улыбалась.
+      </p>
+
+      <button onclick="location.reload()">Сначала ❤️</button>
     </div>
-</div>
 
-<!-- POPUP -->
-<div id="popup">
-    <p>Теперь настроение точно поднято 😈</p>
-    <button onclick="closePopup()">Закрыть</button>
-</div>
+    <script>
+      function nextScreen(current) {
+        const currentScreen = document.getElementById("screen" + current);
+        const nextScreen = document.getElementById("screen" + (current + 1));
 
-<script>
-let current = 1;
+        if (nextScreen) {
+          currentScreen.classList.remove("active");
+          nextScreen.classList.add("active");
+        }
+      }
 
-function nextScreen() {
-    document.getElementById("screen" + current).classList.remove("active");
-    current++;
-    document.getElementById("screen" + current).classList.add("active");
-}
+      function createHeart() {
+        const heart = document.createElement("div");
 
-function openPopup() {
-    document.getElementById("popup").style.display = "block";
-}
+        heart.classList.add("heart-bg");
+        heart.innerHTML = "❤️";
 
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        heart.style.opacity = Math.random() * 0.5 + 0.2;
 
-/* ❤️ сердечки как у тебя на скрине */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart-bg");
-    heart.innerHTML = "❤";
+        document.body.appendChild(heart);
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
-    heart.style.opacity = Math.random();
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
 
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
-
-setInterval(createHeart, 200);
-</script>
-
-</body>
+      setInterval(createHeart, 400);
+    </script>
+  </body>
 </html>
